@@ -1,0 +1,22 @@
+[2018-02-24 15:48:12] APPL - APPWIZ - exception 'ZDKException' with message 'UPL-006: the size of the uploaded file 'favicon.ico' is greater than the allowed maximum size of '102400' bytes!' in C:\wamp64\www\znetdk\engine\core\request.php:326
+Stack trace:
+#0 C:\wamp64\www\znetdk\engine\tools\appwiz\app\uploadedfile.php(83): Request->moveImageFile('logo', 'C:\\wamp64\\www\\z...', 102400)
+#1 C:\wamp64\www\znetdk\engine\tools\appwiz\app\controller\wizard.php(79): app\UploadedFile->upload()
+#2 C:\wamp64\www\znetdk\engine\core\appcontroller.php(182): app\controller\Wizard::action_upload()
+#3 C:\wamp64\www\znetdk\engine\core\appcontroller.php(45): AppController::executeAction('upload')
+#4 C:\wamp64\www\znetdk\engine\core\maincontroller.php(107): AppController::doAction('upload')
+#5 C:\wamp64\www\znetdk\engine\core\maincontroller.php(135): MainController::executeAction('wizard', 'upload')
+#6 C:\wamp64\www\znetdk\index.php(81): MainController::doAction()
+#7 {main} - C:\wamp64\www\znetdk\engine\tools\appwiz-preview\public\images\logo.ico - favicon.ico
+[2018-02-24 15:48:32] APPL - APPWIZ - exception 'ZDKException' with message 'UPL-006: the size of the uploaded file 'favicon.ico' is greater than the allowed maximum size of '102400' bytes!' in C:\wamp64\www\znetdk\engine\core\request.php:326
+Stack trace:
+#0 C:\wamp64\www\znetdk\engine\tools\appwiz\app\uploadedfile.php(83): Request->moveImageFile('logo', 'C:\\wamp64\\www\\z...', 102400)
+#1 C:\wamp64\www\znetdk\engine\tools\appwiz\app\controller\wizard.php(79): app\UploadedFile->upload()
+#2 C:\wamp64\www\znetdk\engine\core\appcontroller.php(182): app\controller\Wizard::action_upload()
+#3 C:\wamp64\www\znetdk\engine\core\appcontroller.php(45): AppController::executeAction('upload')
+#4 C:\wamp64\www\znetdk\engine\core\maincontroller.php(107): AppController::doAction('upload')
+#5 C:\wamp64\www\znetdk\engine\core\maincontroller.php(135): MainController::executeAction('wizard', 'upload')
+#6 C:\wamp64\www\znetdk\index.php(81): MainController::doAction()
+#7 {main} - C:\wamp64\www\znetdk\engine\tools\appwiz-preview\public\images\logo.ico - favicon.ico
+[2018-02-24 15:50:27] CORE - ZNETDK ERROR - DAO-004: unable to execute the SQL statement 'INSERT INTO zdk_users (user_name, user_email, login_name, login_password, expiration_date, full_menu_access, user_enabled) VALUES (?, ?, ?, ?, ?, ?, ?)': code='HY000', message='SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'full_menu_access' at row 1
+[2018-02-24 15:50:27] CORE - ZNETDK ERROR - USR-004: unable to store the user: code='HY000', message='SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'full_menu_access' at row 1
