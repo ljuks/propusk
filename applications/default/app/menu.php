@@ -13,6 +13,8 @@ class Menu implements \iMenu {
         \MenuManager::addMenuItem(NULL, 'check_connection', LA_MENU_HOME, 'ui-icon-home');
         \MenuManager::addMenuItem(NULL, 'try_themes', LA_MENU_THEMES, 'ui-icon-image');
         \MenuManager::addMenuItem(NULL, 'check_widgets', LA_MENU_WIDGETS, 'ui-icon-lightbulb');
+        \MenuManager::addMenuItem(NULL,'democrudview',"CRUD demo");
+        \MenuManager::addMenuItem(NULL,'propuskview',"propusk");
         \MenuManager::addMenuItem(NULL, '_authorization', LC_MENU_AUTHORIZATION, 'ui-icon-key');
         \MenuManager::addMenuItem('_authorization', 'users', LC_MENU_AUTHORIZ_USERS, 'ui-icon-person');
         \MenuManager::addMenuItem('_authorization', 'profiles', LC_MENU_AUTHORIZ_PROFILES, 'ui-icon-link');
