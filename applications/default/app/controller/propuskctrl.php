@@ -14,8 +14,9 @@ class PropuskCtrl extends \AppController {
     static protected function action_save() {
         // 1) Read POST parameter's values
         $request = new \Request();
-        $row = $request->getValuesAsMap('id', 'user', 'date', 'num', 'mycompany', 'company', 'validto', 'description', 'price', 'approved', 'dtstamp');
-
+  //      $row = $request->getValuesAsMap('id', 'user', 'date', 'num', 'mycompany', 'company', 'validto', 'description', 'price', 'approved', 'dtstamp');
+       $row = $request->getValuesAsMap('id', 'num');
+       
         // 2) Store values into the database
         $propuskDAO = new \app\model\PropuskDAO();
         $response = new \Response();
@@ -60,12 +61,11 @@ class PropuskCtrl extends \AppController {
         $first = $request->first; $rows = $request->rows;
         // --> Sort criteria
         $sortField = $request->sortfield; $sortOrder = $request->sortorder;
-        $sortCriteria = is_null($sortField) ? 'name' : $sortField . (is_null($sortOrder) ? ' ASC' : $sortOrder == 1 ? ' ASC' : ' DESC');
+        $sortCriteria = is_null($sortField) ? 'id' : $sortField . (is_null($sortOrder) ? ' ASC' : $sortOrder == 1 ? ' ASC' : ' DESC');
         // --> Filter criteria
         $criteria = $request->search_criteria;
         $keyword = '%' . $criteria . '%';
-        
-        // 2) Request rows from the database
+       // 2) Request rows from the database
         $response = new \Response();
         $propuskDAO = new \app\model\PropuskDAO();
         $propuskDAO->setKeywordAsFilter($keyword);
@@ -74,8 +74,7 @@ class PropuskCtrl extends \AppController {
             $response->total = $propuskDAO->getCount();
             $propuskDAO->setSortCriteria($sortCriteria);
             $propuskDAO->setLimit($first, $rows);
-
-            while($row = $propuskDAO->getResult()) {
+           while($row = $propuskDAO->getResult()) {
                 $propuskFound[] = $row;
             }
             $response->rows = $propuskFound;
@@ -83,8 +82,7 @@ class PropuskCtrl extends \AppController {
         } catch (\PDOException $ex) {
             $response->setFailedMessage("Request data", "Unable to request the propusk (error '" . $ex->getCode() . "')");
         }
-        
-        // 3) Return JSON response
+       // 3) Return JSON response
         return $response;
     }
 

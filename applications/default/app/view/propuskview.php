@@ -30,17 +30,17 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 <div id="propusk-table" class="zdk-datatable zdk-synchronize" title="products" data-zdk-action="propuskctrl:data"
      data-zdk-paginator="10" data-zdk-columns='[
      {"field":"id", "headerText": "№", "sortable":true},
-     {"field":"date", "headerText": "Дата", "sortable":true},
-     {"field":"company", "headerText": "Company", "sortable":true},
-     {"field":"description", "headerText": "Description", "sortable":true, "tooltip":true},
-     {"field":"approved", "headerText": "Approved", "sortable":true}]'>
+     {"field":"num", "headerText": "Approved", "sortable":true}]'>
 </div>
 <!-- Form dialog -->
 <div id="propusk-dlg" class="zdk-modal" title="Product" data-zdk-width="340px" data-zdk-confirm="Do you want to cancel your changes?:Yes:No">
     <form class='zdk-form' data-zdk-action="propuskctrl:save" data-zdk-datatable="propusk-table">
 <!--        <label>id</label>
         <input name="id" maxlength="10" required>-->
-        <label>date</label>
+<input name="id" type="hidden">
+ <label>num</label>
+        <input name="num" maxlength="25" required>
+<!--        <label>date</label>
         <input name="date" required>
         <label>company</label>
         <input name="company" maxlength="25" required>
@@ -48,8 +48,8 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         <label>Description</label>
         <textarea name="description" rows="3" maxlength="200"></textarea>
         <label>approved</label>
-        <input name="approved" pattern="^\d+\.?\d{0,2}$" maxlength="6" required>
-        <input name="id" type="hidden">
+        <input name="approved" pattern="^\d+\.?\d{0,2}$" maxlength="6" required>-->
+        
         <button class="zdk-bt-save zdk-close-dialog" type="submit">Save</button>
         <button class="zdk-bt-cancel zdk-close-dialog" type="button">Cancel</button>
     </form>
@@ -60,20 +60,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         width: 90px;
     }
 
-    #propusk-table tr > td:nth-of-type(2), #propusk-table thead > th:nth-of-type(2) {
-        text-align:center;
-        width:90px;
-    }
-    
-    #propusk-table tr > td:nth-of-type(3), #propusk-table thead > th:nth-of-type(3) {
-        text-align:center;
-        width:90px;
-    }
-    
-
-    #propusk-table tr > td:nth-of-type(4), #propusk-table thead > th:nth-of-type(4) {
-        text-overflow:ellipsis;
-    }
+ 
 
     #propusk-table tr > td:last-of-type, #propusk-table thead > th:last-of-type {
         text-align:right;
