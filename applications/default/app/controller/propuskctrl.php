@@ -15,7 +15,7 @@ class PropuskCtrl extends \AppController {
         // 1) Read POST parameter's values
         $request = new \Request();
   //      $row = $request->getValuesAsMap('id', 'user', 'date', 'num', 'mycompany', 'company', 'validto', 'description', 'price', 'approved', 'dtstamp');
-       $row = $request->getValuesAsMap('id', 'num', 'num1', 'driver', 'date1', 'date2', 'person1', 'person2', 'description', 'mycompany' );
+    $row = $request->getValuesAsMap('id', 'num'    , 'nump', 'driver', 'date1', 'date2', 'person1', 'person2', 'description', 'mycompany' );
        
         // 2) Store values into the database
         $propuskDAO = new \app\model\PropuskDAO();
