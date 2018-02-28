@@ -15,7 +15,7 @@ class PropuskCtrl extends \AppController {
         // 1) Read POST parameter's values
         $request = new \Request();
   //      $row = $request->getValuesAsMap('id', 'user', 'date', 'num', 'mycompany', 'company', 'validto', 'description', 'price', 'approved', 'dtstamp');
-       $row = $request->getValuesAsMap('id', 'num');
+       $row = $request->getValuesAsMap('id', 'num', 'num1', 'driver', 'date1', 'date2', 'person1', 'person2', 'description', 'mycompany' );
        
         // 2) Store values into the database
         $propuskDAO = new \app\model\PropuskDAO();
@@ -93,7 +93,7 @@ class PropuskCtrl extends \AppController {
         // 2) Request the rows matching the criterium from the database
         $propuskDAO = new \app\model\PropuskDAO();
         $propuskDAO->setNameAsFilter('%' . $request->criteria . '%');
-        $propuskDAO->setSortCriteria('name');
+        $propuskDAO->setSortCriteria('num');
         $propuskDAO->setLimit(0, 10);
         
         $response = new \Response();
@@ -101,9 +101,9 @@ class PropuskCtrl extends \AppController {
         $suggestions = array();
         try {
             while($row = $propuskDAO->getResult()) {
-                if ($row['name'] !== $previousSuggestion) {
-                    $suggestions[]['label'] = $row['name'];
-                    $previousSuggestion = $row['name'];
+                if ($row['num'] !== $previousSuggestion) {
+                    $suggestions[]['label'] = $row['num'];
+                    $previousSuggestion = $row['num'];
                 }
             }
             $response->setResponse($suggestions);

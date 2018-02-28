@@ -138,7 +138,7 @@ define('CFG_SESSION_DEFAULT_MODE','public');
  *  user can't do it. In this last case, the session expiration mode imposed to
  *  the user is the one specified for the parameter CFG_SESSION_DEFAULT_MODE
  */
-define('CFG_SESSION_SELECT_MODE',TRUE);
+define('CFG_SESSION_SELECT_MODE',FALSE);
 
 /** Is authentication required?
  * @return boolean Value TRUE if the user must authenticate to access to the
@@ -149,7 +149,7 @@ define('CFG_AUTHENT_REQUIRED',FALSE);
 /** Validity period in months of the password before its expiration
  * @return integer Number of months before the password expires
  */
-define('CFG_DEFAULT_PWD_VALIDITY_PERIOD',6);
+define('CFG_DEFAULT_PWD_VALIDITY_PERIOD',3);
 
 /** Regular expression used to check if a new entered password is valid 
  * @return string Regular expression for new password checking

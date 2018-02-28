@@ -8,11 +8,11 @@
 */
 
 /* General labels */
-define('LC_PAGE_TITLE', 'My first application');
+define('LC_PAGE_TITLE', 'Test propusk');
 
 /* Heading labels */
-define('LC_HEAD_TITLE', 'My first application');
-define('LC_HEAD_SUBTITLE', 'Generated from the ZnetDK @pplication Wizard');
+define('LC_HEAD_TITLE', 'Test propusk');
+define('LC_HEAD_SUBTITLE', '');
 
 /* Heading images */
 define('LC_HEAD_IMG_LOGO', ZNETDK_APP_URI.'images/logo.bmp');

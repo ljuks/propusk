@@ -154,14 +154,14 @@ define('LC_FORM_LBL_USER_PROFILES','Профили');
 
 /* Other Form labels */
 define('LC_FORM_LBL_NO_FILE_SELECTED','&lt; No file selected! &gt;');
-define('LC_ACTION_ROWS_LABEL','Rows per page');
+define('LC_ACTION_ROWS_LABEL','Количество строк');
 
 /* BUTTON labels */
 define('LC_BTN_LOGIN','Connect');
 define('LC_BTN_CANCEL','Отмена');
 define('LC_BTN_CLOSE','Закрыть');
 define('LC_BTN_SAVE','Сохранить');
-define('LC_BTN_NEW','Новый');
+define('LC_BTN_NEW','Добавить');
 define('LC_BTN_MODIFY','Редактировать');
 define('LC_BTN_OPEN','Открыть');
 define('LC_BTN_OK','Ok');
@@ -182,10 +182,10 @@ define('LC_MSG_CRI_ERR_DETAIL',"A technical problem has occurred while processin
 
 /* ERROR messages */
 define('LC_MSG_ERR_EXCEPTION','Technical problem');
-define('LC_MSG_ERR_LOGIN','Login ID or password is invalid!');
+define('LC_MSG_ERR_LOGIN','Логин или пароль ошибочные!');
 define('LC_MSG_ERR_DIFF_LOGIN','You must use the same login ID to renew the connection!');
-define('LC_MSG_ERR_LOGIN_DISABLED','Your user account is disabled.<br>Contact your security manager to reactivate your account.');
-define('LC_MSG_ERR_LOGIN_EXPIRATION','Your password has expired! Please, renew your password.');
+define('LC_MSG_ERR_LOGIN_DISABLED','Ваш аккаунт заблокирован.<br>Contact your security manager to reactivate your account.');
+define('LC_MSG_ERR_LOGIN_EXPIRATION','Ваш пароль просрочен! Пожалуйста, обновите пароль.');
 define('LC_MSG_ERR_LOGIN_TOO_MUCH_ATTEMPTS','The maximum number of attempts allowed has been achieved!<br>Your account has been disabled.');
 define('LC_MSG_ERR_HTTP','<h3>HTTP Error %1!</h3><p><a href="%2">Clic here</a> to return to the home page.</p>');
 define('LC_MSG_ERR_SELECT_RECORD',"A database error occured! Unable to select the data!");

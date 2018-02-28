@@ -30,7 +30,12 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 <div id="propusk-table" class="zdk-datatable zdk-synchronize" title="products" data-zdk-action="propuskctrl:data"
      data-zdk-paginator="10" data-zdk-columns='[
      {"field":"id", "headerText": "№", "sortable":true},
-     {"field":"num", "headerText": "Approved", "sortable":true}]'>
+     {"field":"dtstamp", "headerText": "Дата", "sortable":true},
+     {"field":"aproved", "headerText": "Статус", "sortable":true},
+     {"field":"person1", "headerText": "Ответственный", "sortable":true},
+     {"field":"person2", "headerText": "Сопровождающий", "sortable":true},
+     {"field":"num", "headerText": "Номер машины", "sortable":true}]'
+     >
 </div>
 <!-- Form dialog -->
 <div id="propusk-dlg" class="zdk-modal" title="Product" data-zdk-width="340px" data-zdk-confirm="Do you want to cancel your changes?:Yes:No">
@@ -38,17 +43,34 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 <!--        <label>id</label>
         <input name="id" maxlength="10" required>-->
 <input name="id" type="hidden">
- <label>num</label>
-        <input name="num" maxlength="25" required>
-<!--        <label>date</label>
-        <input name="date" required>
-        <label>company</label>
-        <input name="company" maxlength="25" required>
+        <label>Номер машины</label>
+        <input name="num" maxlength="12" required>
+        <label>Номер прицепа</label>
+        <input name="num1" maxlength="12">
+        <label>Водитель</label>
+        <input  name="driver" maxlength="30">
         
-        <label>Description</label>
+               <input type="date" name="date1" required
+                data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>">  
+               
+               <input type="date" name="date2" required
+                data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>"> 
+        <label>Ответственный</label>
+        <input name="person1" value="111">
+        <label>Сопровождающий</label>
+        <input name="person2" maxlength="30">
+        
+                <label>Коментарии</label>
         <textarea name="description" rows="3" maxlength="200"></textarea>
-        <label>approved</label>
-        <input name="approved" pattern="^\d+\.?\d{0,2}$" maxlength="6" required>-->
+        
+        <label>Компания</label>
+        <input name="company" maxlength="30" value="333">
+        
+    
+
+        
+         
+    
         
         <button class="zdk-bt-save zdk-close-dialog" type="submit">Save</button>
         <button class="zdk-bt-cancel zdk-close-dialog" type="button">Cancel</button>

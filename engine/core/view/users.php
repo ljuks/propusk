@@ -80,12 +80,7 @@ Last update: 09/18/2015
             </div>
             <!-- Menu access -->
             <label><?php echo LC_FORM_LBL_USER_MENU_ACCESS; ?></label>
-<!--                        <div class="zdk-radiobuttongroup" data-name="full_menu_access">
-                <input type="radio" value="1"/>
-                <label><?php echo LC_FORM_LBL_USER_STATUS_ENABLED; ?></label>
-                <input type="radio" value="0"/>
-                <label><?php echo LC_FORM_LBL_USER_STATUS_DISABLED; ?></label>
-            </div>-->
+
            <input type="checkbox" name="full_menu_access" value="1"/> 
             <span><?php echo LC_FORM_LBL_USER_MENU_ACCESS_FULL; ?></span>
             <!-- Profiles -->
