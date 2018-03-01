@@ -5,6 +5,11 @@ Copyright (C) 2015 Pascal MARTINEZ (contact@znetdk.fr)
 View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 -->
 <!-- Actions bar -->
+<!-- this should go after your </body> -->
+<link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/>
+<script src="/jquery.js"></script>
+<script src="/build/jquery.datetimepicker.full.min.js"></script>
+
 <div class="zdk-action-bar" data-zdk-dialog="propusk-dlg" data-zdk-datatable="propusk-table">
     <!-- Action buttons -->
     <button class="zdk-bt-add">New</button>
@@ -40,38 +45,38 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 <!-- Form dialog -->
 <div id="propusk-dlg" class="zdk-modal" title="Product" data-zdk-width="340px" data-zdk-confirm="Do you want to cancel your changes?:Yes:No">
     <form class='zdk-form' data-zdk-action="propuskctrl:save" data-zdk-datatable="propusk-table">
-<!--        <label>id</label>
-        <input name="id" maxlength="10" required>-->
-<input name="id" type="hidden">
+        <!--        <label>id</label>
+                <input name="id" maxlength="10" required>-->
+        <input name="id" type="hidden">
         <label>Номер машины</label>
         <input name="num" maxlength="12" required>
         <label>Номер прицепа</label>
         <input name="num1" maxlength="12">
         <label>Водитель</label>
         <input  name="driver" maxlength="30">
-        
-               <input type="date" name="date1" required
-                data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>">  
-               
-               <input type="date" name="date2" required
-                data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>"> 
+        <label>Дата входа</label>
+        <input type="date" name="date1" required
+               data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>">  
+        <label>Дата выхода</label>
+        <input type="date" name="date2" required
+               data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>"> 
         <label>Ответственный</label>
         <input name="person1" value="111">
         <label>Сопровождающий</label>
         <input name="person2" maxlength="30">
-        
-                <label>Коментарии</label>
+
+        <label>Коментарии</label>
         <textarea name="description" rows="3" maxlength="200"></textarea>
-        
+
         <label>Компания</label>
         <input name="company" maxlength="30" value="333">
-        
-    
 
-        
-         
-    
-        
+
+
+<input id="datetimepicker" type="text" >
+
+
+
         <button class="zdk-bt-save zdk-close-dialog" type="submit">Save</button>
         <button class="zdk-bt-cancel zdk-close-dialog" type="button">Cancel</button>
     </form>
@@ -82,10 +87,11 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         width: 90px;
     }
 
- 
+
 
     #propusk-table tr > td:last-of-type, #propusk-table thead > th:last-of-type {
         text-align:right;
         width:80px;
     }
 </style>
+
