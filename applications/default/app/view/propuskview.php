@@ -8,9 +8,10 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 <!-- this should go after your </body> -->
 <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/>
 <script src="/jquery.js"></script>
-<script src="/build/jquery.datetimepicker.full.min.js"></script>
+<script src="/jquery.datetimepicker.full.min.js"></script>
 
-<div class="zdk-action-bar" data-zdk-dialog="propusk-dlg" data-zdk-datatable="propusk-table">
+
+<div id='propusk_actions' class="zdk-action-bar" data-zdk-dialog="propusk_dlg" data-zdk-datatable="propusk_table">
     <!-- Action buttons -->
     <button class="zdk-bt-add">New</button>
     <button class="zdk-bt-edit" data-zdk-noselection="Please, select first a product to edit!">Edit</button>
@@ -32,7 +33,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
     </div>
 </div>
 <!-- Datatable -->
-<div id="propusk-table" class="zdk-datatable zdk-synchronize" title="products" data-zdk-action="propuskctrl:data"
+<div id="propusk_table" class="zdk-datatable zdk-synchronize" title="products" data-zdk-action="propuskctrl:data"
      data-zdk-paginator="10" data-zdk-columns='[
      {"field":"id", "headerText": "№", "sortable":true},
      {"field":"dtstamp", "headerText": "Дата", "sortable":true},
@@ -43,8 +44,8 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
      >
 </div>
 <!-- Form dialog -->
-<div id="propusk-dlg" class="zdk-modal" title="Product" data-zdk-width="340px" data-zdk-confirm="Do you want to cancel your changes?:Yes:No">
-    <form class='zdk-form' data-zdk-action="propuskctrl:save" data-zdk-datatable="propusk-table">
+<div id="propusk_dlg" class="zdk-modal" title="Product" data-zdk-width="340px" data-zdk-confirm="Do you want to cancel your changes?:Yes:No">
+    <form class='zdk-form' data-zdk-action="propuskctrl:save" data-zdk-datatable="propusk_table">
         <!--        <label>id</label>
                 <input name="id" maxlength="10" required>-->
         <input name="id" type="hidden">
@@ -95,3 +96,26 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
     }
 </style>
 
+
+
+<script>
+    $(document).ready(function () {
+
+        /********* When the form is reset **********/
+        $('#propusk_actions').zdkactionbar({
+            whenadd: function() {
+                // Refresh profiles in the listbox
+//                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
+                // Default expiration date value
+                $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+                // Default user status is enabled (value = "1")
+ //               $("#znetdk_user_dialog form input[name=user_enabled]").puiradiobutton('select', "1");
+            },
+            whenedit: function() {
+                // Refresh profiles in the listbox keeping current selection
+//                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh',true);
+            }
+        });
+
+    });
+</script>

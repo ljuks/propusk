@@ -38,7 +38,7 @@ define('CFG_SESSION_TIMEOUT',10);
  * @return boolean Value true if the user must authenticate to access to the
  *  application
  */
-define('CFG_AUTHENT_REQUIRED',FALSE);
+define('CFG_AUTHENT_REQUIRED',TRUE);
 
 /** Host name of the machine where the database MySQL is installed.
  * @return string For example, '127.0.0.1' or 'mysql78.perso'
