@@ -7,8 +7,8 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 <!-- Actions bar -->
 <!-- this should go after your </body> -->
 <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/>
-<script src="/jquery.js"></script>
-<script src="/jquery.datetimepicker.full.min.js"></script>
+
+<script src="/jquery.datetimepicker.js"></script>
 
 
 <div id='propusk_actions' class="zdk-action-bar" data-zdk-dialog="propusk_dlg" data-zdk-datatable="propusk_table">
@@ -74,7 +74,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 
 
-<input id="datetimepicker" type="text" >
+
 
 
 
@@ -99,6 +99,8 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 
 <script>
+
+    
     $(document).ready(function () {
 
         /********* When the form is reset **********/

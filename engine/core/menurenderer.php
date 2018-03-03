@@ -82,7 +82,7 @@ Class MenuRenderer {
         echo str_repeat("\t", $nbTabs + 1) . "<div>" . PHP_EOL;
         foreach ($sortedMenuItems as $value) {
             if (!is_array($allowedMenuItems) || (is_array($allowedMenuItems) && array_search($value[0], $allowedMenuItems) !== false)) {
-                echo str_repeat("\t", $nbTabs + 2) . "<div id=\"menu-$value[0]\">" . PHP_EOL;
+                echo str_repeat("\t", $nbTabs + 2) . "<div id=\"menu-$value[0]\">". PHP_EOL;
                 if (isset($value[2]) && $level === 1) {
                     // Level two menu
                     self::renderTabViewMenu($level + 1, $value[2], $selectedMenuItem, $allowedMenuItems);
