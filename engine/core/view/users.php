@@ -10,8 +10,8 @@ File version: 1.0
 Last update: 09/18/2015
 -->
 <div id="znetdk_user_actions" class="zdk-action-bar"
-        data-zdk-dialog="znetdk_user_dialog"
-        data-zdk-datatable="znetdk_users_datatable">
+     data-zdk-dialog="znetdk_user_dialog"
+     data-zdk-datatable="znetdk_users_datatable">
     <button class="zdk-bt-add" title="<?php echo LC_FORM_TITLE_USER_NEW; ?>"><?php echo LC_BTN_NEW; ?></button>
     <button class="zdk-bt-edit" title="<?php echo LC_FORM_TITLE_USER_MODIFY; ?>"
             data-zdk-noselection="<?php echo LC_MSG_WARN_ROW_NOTSELECTED; ?>"
@@ -20,37 +20,42 @@ Last update: 09/18/2015
     <button class="zdk-bt-remove" title="<?php echo LC_FORM_TITLE_USER_REMOVE; ?>"
             data-zdk-noselection="<?php echo LC_MSG_WARN_ROW_NOTSELECTED; ?>"
             data-zdk-action="users:remove"
-            data-zdk-confirm="<?php echo LC_MSG_ASK_REMOVE.':'.LC_BTN_YES.':'.LC_BTN_NO; ?>"
+            data-zdk-confirm="<?php echo LC_MSG_ASK_REMOVE . ':' . LC_BTN_YES . ':' . LC_BTN_NO; ?>"
             ><?php echo LC_BTN_REMOVE; ?>
     </button>
 </div>
-<div id="znetdk_users_datatable" class="zdk-datatable zdk-synchronize" title='<?php echo LC_TABLE_AUTHORIZ_USERS_CAPTION;?>'
-            data-zdk-action="users:all"
-            data-zdk-columns='[
-                {"field":"login_name", "headerText": "<?php echo LC_TABLE_COL_LOGIN_ID;?>", "sortable":true},
-                {"field":"user_name", "headerText": "<?php echo LC_TABLE_COL_USER_NAME;?>", "sortable":true, "tooltip":true},
-                {"field":"user_email", "headerText": "<?php echo LC_TABLE_COL_USER_EMAIL;?>", "sortable":true,"tooltip":true},
-                {"field":"status", "headerText": "<?php echo LC_TABLE_COL_USER_STATUS;?>", "sortable":true},
-                {"field":"menu_access", "headerText": "<?php echo LC_TABLE_COL_MENU_ACCESS;?>", "sortable":true},
-                {"field":"user_profiles", "headerText": "<?php echo LC_TABLE_COL_USER_PROFILES;?>", "sortable":false,"tooltip":true}
-            ]'>
+<div id="znetdk_users_datatable" class="zdk-datatable zdk-synchronize" title='<?php echo LC_TABLE_AUTHORIZ_USERS_CAPTION; ?>'
+     data-zdk-action="users:all"
+     data-zdk-columns='[
+     {"field":"login_name", "headerText": "<?php echo LC_TABLE_COL_LOGIN_ID; ?>", "sortable":true},
+     {"field":"user_name", "headerText": "<?php echo LC_TABLE_COL_USER_NAME; ?>", "sortable":true, "tooltip":true},
+     {"field":"user_email", "headerText": "<?php echo LC_TABLE_COL_USER_EMAIL; ?>", "sortable":true,"tooltip":true},
+     {"field":"status", "headerText": "<?php echo LC_TABLE_COL_USER_STATUS; ?>", "sortable":true},
+     {"field":"menu_access", "headerText": "<?php echo LC_TABLE_COL_MENU_ACCESS; ?>", "sortable":true},
+     {"field":"user_profiles", "headerText": "<?php echo LC_TABLE_COL_USER_PROFILES; ?>", "sortable":false,"tooltip":true}
+     ]'>
 </div>
-<div id="znetdk_user_dialog" class="zdk-modal" title="<?php echo LC_FORM_TITLE_USER_NEW; ?>" data-zdk-width="694px">
+<div id="znetdk_user_dialog" class="zdk-modal" title="<?php echo LC_FORM_TITLE_USER_NEW; ?>" data-zdk-width="1000px">
     <form class="zdk-form" autocomplete="off"
           data-zdkerrmsg-required="<?php echo LC_MSG_ERR_MISSING_VALUE; ?>"
           data-zdk-action="users:save" data-zdk-datatable="znetdk_users_datatable">
         <!-- User ID -->
         <input class="zdk-row-id" type="hidden" name="user_id">
-         <!-- Identity -->
+        <!-- Identity -->
         <fieldset>
             <legend><?php echo LC_FORM_FLD_USER_IDENTITY; ?></legend>
             <!-- User name -->
             <label><?php echo LC_FORM_LBL_USER_NAME; ?></label>
-            <input type="text" name="user_name" maxlength="100" required >
+            <input type="text" name="user_name" maxlength="50" required >
             <!-- Email -->
             <label><?php echo LC_FORM_LBL_USER_EMAIL; ?></label>
             <input type="email" name="user_email" required 
                    data-zdkerrmsg-type="<?php echo LC_MSG_ERR_EMAIL_INVALID; ?>">
+            <label>Предприятие</label>
+            <select class="zdk-dropdown" name="company" 
+                    data-zdk-action="users:getcompanies"
+                    data-zdk-noselection="Выбрать из списка..."></select>
+            
         </fieldset>
         <fieldset> <!-- Connection -->
             <legend><?php echo LC_FORM_FLD_USER_CONNECTION; ?></legend>
@@ -66,7 +71,7 @@ Last update: 09/18/2015
             <!-- Expiration date -->
             <label><?php echo LC_FORM_LBL_USER_EXPIRATION_DATE; ?></label>
             <input type="date" name="expiration_date" required
-                data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>">
+                   data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>">
         </fieldset>
         <fieldset> <!-- User rights -->
             <legend><?php echo LC_FORM_FLD_USER_RIGHTS; ?></legend>
@@ -81,7 +86,7 @@ Last update: 09/18/2015
             <!-- Menu access -->
             <label><?php echo LC_FORM_LBL_USER_MENU_ACCESS; ?></label>
 
-           <input type="checkbox" name="full_menu_access" value="1"/> 
+            <input type="checkbox" name="full_menu_access" value="1"/> 
             <span><?php echo LC_FORM_LBL_USER_MENU_ACCESS_FULL; ?></span>
             <!-- Profiles -->
             <label title="<?php echo LC_MSG_INF_SELECT_LIST_ITEM; ?>"><?php echo LC_FORM_LBL_USER_PROFILES; ?></label>

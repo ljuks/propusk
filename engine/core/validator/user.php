@@ -31,7 +31,7 @@ namespace validator;
 class User extends \validator\Password {
 
     protected function initVariables() {
-        return array('user_id', 'user_name', 'user_email', 'login_name', 'login_password', 'login_password2',
+        return array('user_id', 'user_name', 'user_email', 'company','login_name', 'login_password', 'login_password2',
             'expiration_date', 'full_menu_access', 'user_enabled');
     }
 

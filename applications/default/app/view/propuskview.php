@@ -10,6 +10,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 <script src="/jquery.js"></script>
 <script src="/jquery.datetimepicker.full.min.js"></script>
 
+\UserSessions
 
 <div id='propusk_actions' class="zdk-action-bar" data-zdk-dialog="propusk_dlg" data-zdk-datatable="propusk_table">
     <!-- Action buttons -->
@@ -107,6 +108,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
                 // Refresh profiles in the listbox
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
                 // Default expiration date value
+                $("#propusk_dlg form input[name=company").val('555');
                 $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
                 // Default user status is enabled (value = "1")
  //               $("#znetdk_user_dialog form input[name=user_enabled]").puiradiobutton('select', "1");

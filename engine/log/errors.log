@@ -89,3 +89,18 @@ Stack trace:
 [2018-02-28 14:07:48] CORE - E_NOTICE - Use of undefined constant LA_DEMO_ERROR_MSG_SAVE - assumed 'LA_DEMO_ERROR_MSG_SAVE' - C:\wamp64\www\propusk\applications\default\app\controller\propuskctrl.php(29)
 [2018-02-28 14:09:57] CORE - E_NOTICE - Use of undefined constant LA_DEMO_DIALOG_SAVE - assumed 'LA_DEMO_DIALOG_SAVE' - C:\wamp64\www\propusk\applications\default\app\controller\propuskctrl.php(25)
 [2018-02-28 14:09:57] CORE - E_NOTICE - Use of undefined constant LA_DEMO_INFO_MSG_SAVE - assumed 'LA_DEMO_INFO_MSG_SAVE' - C:\wamp64\www\propusk\applications\default\app\controller\propuskctrl.php(26)
+[2018-03-08 16:11:38] CORE - E_ERROR - spl_autoload(): Class app\model\CopmanyDAO could not be loaded - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(70)
+[2018-03-08 16:17:32] CORE - E_ERROR - spl_autoload(): Class app\model\CopmanyDAO could not be loaded - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(70)
+[2018-03-08 16:20:20] CORE - E_ERROR - spl_autoload(): Class app\model\CopmanyDAO could not be loaded - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(70)
+[2018-03-08 16:26:56] CORE - E_NOTICE - Use of undefined constant LA_DEMO_DIALOG_SAVE - assumed 'LA_DEMO_DIALOG_SAVE' - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(25)
+[2018-03-08 16:26:56] CORE - E_NOTICE - Use of undefined constant LA_DEMO_INFO_MSG_SAVE - assumed 'LA_DEMO_INFO_MSG_SAVE' - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(26)
+[2018-03-09 12:01:48] CORE - ZNETDK ERROR - RSP-005: the 't' property does not exist!
+[2018-03-09 12:14:53] CORE - ZNETDK ERROR - RSP-005: the 't' property does not exist!
+[2018-03-09 15:09:23] CORE - ZNETDK ERROR - CTL-003: the controller 'CompanyCtrl' and the action 'getlist' does not exist!
+[2018-03-10 17:15:33] CORE - ZNETDK ERROR - DAO-004: unable to execute the SQL statement 'INSERT INTO company (name, description) VALUES (?, ?)': code='23000', message='SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'description' cannot be null
+[2018-03-10 17:15:33] CORE - E_NOTICE - Use of undefined constant LA_DEMO_DIALOG_SAVE - assumed 'LA_DEMO_DIALOG_SAVE' - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(28)
+[2018-03-10 17:15:33] CORE - E_NOTICE - Use of undefined constant LA_DEMO_ERROR_MSG_SAVE - assumed 'LA_DEMO_ERROR_MSG_SAVE' - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(29)
+[2018-03-10 17:15:55] CORE - E_NOTICE - Use of undefined constant LA_DEMO_DIALOG_SAVE - assumed 'LA_DEMO_DIALOG_SAVE' - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(25)
+[2018-03-10 17:15:55] CORE - E_NOTICE - Use of undefined constant LA_DEMO_INFO_MSG_SAVE - assumed 'LA_DEMO_INFO_MSG_SAVE' - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(26)
+[2018-03-10 18:01:22] CORE - E_NOTICE - Use of undefined constant LA_DEMO_DIALOG_SAVE - assumed 'LA_DEMO_DIALOG_SAVE' - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(25)
+[2018-03-10 18:01:22] CORE - E_NOTICE - Use of undefined constant LA_DEMO_INFO_MSG_SAVE - assumed 'LA_DEMO_INFO_MSG_SAVE' - C:\wamp64\www\znetdk\applications\default\app\controller\companyctrl.php(26)

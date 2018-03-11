@@ -29,13 +29,31 @@ namespace controller;
  * ZnetDK Core controller for user management
  */
 class Users extends \AppController {
-
     // Action methods
-    
+
     /**
      * Returns the list of the users defined for the application
      * @return \Response Response returned to the main controller
      */
+    static protected function action_getcompanies() {
+        $items = array();
+        $companyDAO = new \app\model\CompanyDAO();
+
+        while ($Row = $companyDAO->getResult()) {
+            $items[] = array('label' => $Row['name'], 'value' => $Row['name']);
+        }
+ //       $list = "('1', '2', '3')";
+//        $items[] = array('label' => 'France', 'value' => 'fr');
+//        $items[] = array('label' => 'Spain', 'value' => 'sp');
+//        $items[] = array('label' => 'United Kingdom', 'value' => 'uk');
+//        $items[] = array('label' => 'United States', 'value' => 'usa');
+        // JSON Response
+        $response = new \Response();
+        $response->rows = $items;
+        $response->success = TRUE;
+        return $response;
+    }
+
     static protected function action_all() {
         $response = new \Response();
         // Get order specifications from request
@@ -76,8 +94,8 @@ class Users extends \AppController {
         if ($validator->validate()) { // Data validation is OK
             $userRow = $validator->getValues();
             // Convert string number to boolean
-            $userRow['full_menu_access'] = ($userRow['full_menu_access'] == 1) ? 1:0;
-	//       $userRow['full_menu_access'] = 0;
+            $userRow['full_menu_access'] = ($userRow['full_menu_access'] == 1) ? 1 : 0;
+            //       $userRow['full_menu_access'] = 0;
             // Password is stored only if is new or has been changed
             if ($userRow['login_password'] === \General::getDummyPassword()) {
                 unset($userRow['login_password']);
@@ -101,8 +119,7 @@ class Users extends \AppController {
                 }
             }
         } else { //Data validation failed...
-            $response->setFailedMessage($summary, $validator->getErrorMessage(),
-                    $validator->getErrorVariable());
+            $response->setFailedMessage($summary, $validator->getErrorMessage(), $validator->getErrorVariable());
         }
         return $response; // JSON response sent back to the main controller
     }
@@ -124,7 +141,7 @@ class Users extends \AppController {
 
     // Public methods that can be optionnaly overidden by the application controller 
     // This application controller must be named \app\controller\Users.
-    
+
     /**
      * Generates a hashed version of the password specified in clear. 
      * @param type $password Password in clear
@@ -142,8 +159,7 @@ class Users extends \AppController {
      * @param string $passwordInClear User's password in clear
      * @param array $otherUserData Extra informations about the user
      */
-    static public function notify($isNewUser, $passwordInClear, $otherUserData)
-    {
+    static public function notify($isNewUser, $passwordInClear, $otherUserData) {
         if (\General::isModule('zdkmail')) { // 'zdkmail' module available...
             $appURI = \General::getApplicationURI();
             $connectedUserName = \MainController::execute('users', 'getUserName');
@@ -153,14 +169,13 @@ class Users extends \AppController {
             $email->addAddress('FROM', $connectedUserEmail, $connectedUserName);
             $email->addAddress('TO', $otherUserData['user_email'], $otherUserData['user_name']);
             $email->setSubjectValues($otherUserData['login_name']);
-            $email->setMessageValues($otherUserData['user_name'], $appURI,
-                $otherUserData['login_name'], $passwordInClear, $connectedUserName);
+            $email->setMessageValues($otherUserData['user_name'], $appURI, $otherUserData['login_name'], $passwordInClear, $connectedUserName);
             if (!$email->send()) {
                 throw new \Exception(LM_MSG_WARN_EMAIL_NOT_SENT_TO_USER);
             }
         }
     }
-    
+
     /**
      * Returns the user name of the currently connected user
      * @return string User name or NULL if the user name can't be read in the 
@@ -212,7 +227,7 @@ class Users extends \AppController {
      */
     static public function disableUser($loginName) {
         \UserManager::disableUser($loginName);
-            return TRUE;
+        return TRUE;
     }
 
     /**
@@ -228,7 +243,7 @@ class Users extends \AppController {
             return \UserManager::hasUserProfile($loginName, $profileName);
         }
     }
-    
+
     /**
      * Indicates whether the connected user has the specified menu item 
      * @param string $menuItem The menu item 
@@ -242,4 +257,5 @@ class Users extends \AppController {
             return \UserManager::hasUserMenuItem($loginName, $menuItem);
         }
     }
+
 }

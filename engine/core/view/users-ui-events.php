@@ -12,9 +12,16 @@ Last update: 09/18/2015
 <script>
     $(document).ready(function () {
 
+
+
+var tt=<?php echo \app\controller\CompanyCtrl::getlist() ?>;
+
+        $('#comp').puidropdown({
+          
+        });
         /********* When the form is reset **********/
         $('#znetdk_user_actions').zdkactionbar({
-            whenadd: function() {
+            whenadd: function () {
                 // Refresh profiles in the listbox
                 $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
                 // Default expiration date value
@@ -22,9 +29,9 @@ Last update: 09/18/2015
                 // Default user status is enabled (value = "1")
                 $("#znetdk_user_dialog form input[name=user_enabled]").puiradiobutton('select', "1");
             },
-            whenedit: function() {
+            whenedit: function () {
                 // Refresh profiles in the listbox keeping current selection
-                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh',true);
+                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh', true);
             }
         });
 
