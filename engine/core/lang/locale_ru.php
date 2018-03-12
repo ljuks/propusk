@@ -157,7 +157,7 @@ define('LC_FORM_LBL_NO_FILE_SELECTED','&lt; No file selected! &gt;');
 define('LC_ACTION_ROWS_LABEL','Количество строк');
 
 /* BUTTON labels */
-define('LC_BTN_LOGIN','Connect');
+define('LC_BTN_LOGIN','OK');
 define('LC_BTN_CANCEL','Отмена');
 define('LC_BTN_CLOSE','Закрыть');
 define('LC_BTN_SAVE','Сохранить');

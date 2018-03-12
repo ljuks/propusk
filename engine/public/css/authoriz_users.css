@@ -63,12 +63,12 @@
 }
 
 #znetdk_user_dialog form input[name=user_email] {
-	width:240px;
+	width:140px;
 }
 
 #znetdk_user_dialog form > .pui-fieldset:first-of-type {
 	width:638px;
-	height:52px;
+	height:204px;
 }
 
 #znetdk_user_dialog form > .pui-fieldset:first-of-type .zdk-form-entry:first-of-type{
