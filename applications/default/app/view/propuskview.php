@@ -10,15 +10,14 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 <script src="/jquery.datetimepicker.js"></script>
 
-\UserSessions
 
 <div id='propusk_actions' class="zdk-action-bar" data-zdk-dialog="propusk_dlg" data-zdk-datatable="propusk_table">
     <!-- Action buttons -->
-    <button class="zdk-bt-add">New</button>
-    <button class="zdk-bt-edit" data-zdk-noselection="Please, select first a product to edit!">Edit</button>
-    <button class="zdk-bt-remove" data-zdk-noselection="Please, select first a product to remove!"
-            data-zdk-confirm="Do you really want to remove the selected product?:Yes:No"
-            data-zdk-action="propuskctrl:remove">Remove</button>
+    <button class="zdk-bt-add">Добавить</button>
+    <button class="zdk-bt-edit" data-zdk-noselection="Выберите строку для редактирования!">Редактировать</button>
+    <button class="zdk-bt-remove" data-zdk-noselection="Выберите строку для удаления!"
+            data-zdk-confirm="Удалить запись?:Да:Нет"
+            data-zdk-action="propuskctrl:remove">Удалить</button>
     <!-- Number of rows per page -->
     <select class="zdk-select-rows" title="Rows">  
         <option value="10">10</option>
@@ -45,7 +44,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
      >
 </div>
 <!-- Form dialog -->
-<div id="propusk_dlg" class="zdk-modal" title="Product" data-zdk-width="340px" data-zdk-confirm="Do you want to cancel your changes?:Yes:No">
+<div id="propusk_dlg" class="zdk-modal" title="Product" data-zdk-width="340px" data-zdk-confirm="Отменить изменения?:Да:Нет">
     <form class='zdk-form' data-zdk-action="propuskctrl:save" data-zdk-datatable="propusk_table">
         <!--        <label>id</label>
                 <input name="id" maxlength="10" required>-->
@@ -79,8 +78,8 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 
 
-        <button class="zdk-bt-save zdk-close-dialog" type="submit">Save</button>
-        <button class="zdk-bt-cancel zdk-close-dialog" type="button">Cancel</button>
+        <button class="zdk-bt-save zdk-close-dialog" type="submit">Сохранить</button>
+        <button class="zdk-bt-cancel zdk-close-dialog" type="button">Отменить</button>
     </form>
 </div>
 <!-- Styles for the Datatable's columns --> 
@@ -110,8 +109,9 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
                 // Refresh profiles in the listbox
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
                 // Default expiration date value
-                $("#propusk_dlg form input[name=company").val('555');
+//                $("#propusk_dlg form input[name=company").val('555');
                 $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+                $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
                 // Default user status is enabled (value = "1")
  //               $("#znetdk_user_dialog form input[name=user_enabled]").puiradiobutton('select', "1");
             },
