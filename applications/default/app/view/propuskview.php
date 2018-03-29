@@ -70,7 +70,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         <textarea name="description" rows="3" maxlength="200"></textarea>
 
         <label>Компания</label>
-        <input name="company" maxlength="30" value="333">
+        <input name="mycompany" maxlength="30" value="333">
 
 
 
@@ -109,7 +109,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
                 // Refresh profiles in the listbox
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
                 // Default expiration date value
-               $("#propusk_dlg form input[name=company").val('<?php echo \UserSession::getLoginName(); ?>');
+                $("#propusk_dlg form input[name=mycompany").val('<?php echo \UserSession::getLoginName(); ?>');
                 $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
                 $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
                 // Default user status is enabled (value = "1")
