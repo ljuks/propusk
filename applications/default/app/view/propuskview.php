@@ -6,10 +6,14 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 -->
 <!-- Actions bar -->
 <!-- this should go after your </body> -->
-<link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/>
 
-<script src="/jquery.datetimepicker.js"></script>
 
+
+<script> 
+    znetdk.useScriptFile('js/jquery.datetimepicker.js');
+    znetdk.useScriptFile('js/jquery-1.9.1.js');
+    znetdk.useStyleSheet('css/jquery.datetimepicker.min.css'); 
+</script>
 
 <div id='propusk_actions' class="zdk-action-bar" data-zdk-dialog="propusk_dlg" data-zdk-datatable="propusk_table">
     <!-- Action buttons -->
@@ -72,7 +76,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         <label>Компания</label>
         <input name="mycompany" maxlength="30" value="333">
 
-
+<input type="text" id="datetimepicker"/>
 
 
 
@@ -109,6 +113,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
                 // Refresh profiles in the listbox
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
                 // Default expiration date value
+                $('#datetimepicker').datetimepicker();
                 $("#propusk_dlg form input[name=mycompany").val('<?php echo \UserSession::getLoginName(); ?>');
                 $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
                 $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
