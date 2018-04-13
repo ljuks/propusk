@@ -108,7 +108,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
     $(document).ready(function () {
 
         /********* When the form is reset **********/
-        $('#propusk_actions').zdkactionbar({
+ //       $('#propusk_actions').zdkactionbar({
             whenadd: function() {
                 // Refresh profiles in the listbox
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
