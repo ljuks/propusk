@@ -10,14 +10,20 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 
 <script> 
-    znetdk.useScriptFile('js/jquery.datetimepicker.js');
-    znetdk.useScriptFile('js/jquery-1.9.1.js');
-    znetdk.useStyleSheet('css/jquery.datetimepicker.min.css'); 
+    znetdk.useScriptFile('jquery.datetimepicker.full.min.js');
+  //  znetdk.useScriptFile('resources/jquery_ui_datepicker/i18n/ui.datepicker-ru.js');
+  //  znetdk.useScriptFile('resources/jquery_ui_datepicker/timepicker_plug/timepicker.js');
+  //  znetdk.useScriptFile('resources/jquery_ui_datepicker/jquery_ui_datepicker.js');
+ //  znetdk.useScriptFile('jquery-1.9.1.js');
+ 
+    znetdk.useStyleSheet('jquery.datetimepicker.css'); 
+ //   znetdk.useStyleSheet('resources/jquery_ui_datepicker/smothness/jquery_ui_datepicker.css'); 
 </script>
 
 <div id='propusk_actions' class="zdk-action-bar" data-zdk-dialog="propusk_dlg" data-zdk-datatable="propusk_table">
     <!-- Action buttons -->
-    <button class="zdk-bt-add">Добавить</button>
+    <button value= 'a' class="zdk-bt-add">Добавить</button>
+     <button id='b' class="zdk-bt-add">Копировать</button>
     <button class="zdk-bt-edit" data-zdk-noselection="Выберите строку для редактирования!">Редактировать</button>
     <button class="zdk-bt-remove" data-zdk-noselection="Выберите строку для удаления!"
             data-zdk-confirm="Удалить запись?:Да:Нет"
@@ -60,11 +66,10 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         <label>Водитель</label>
         <input  name="driver" maxlength="30">
         <label>Дата входа</label>
-        <input type="date" name="date1" required
-               data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>">  
+        <input type="text" id="datetimepicker1" name="date1" required />
         <label>Дата выхода</label>
-        <input type="date" name="date2" required
-               data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>"> 
+        <input type="text" id="datetimepicker2" name="date2" required />
+
         <label>Ответственный</label>
         <input name="person1" value="111">
         <label>Сопровождающий</label>
@@ -76,7 +81,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         <label>Компания</label>
         <input name="mycompany" maxlength="30" value="333">
 
-<input type="text" id="datetimepicker"/>
+
 
 
 
@@ -106,17 +111,37 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
     
     $(document).ready(function () {
+        
+        
+
+
 
         /********* When the form is reset **********/
- //       $('#propusk_actions').zdkactionbar({
+        $('#propusk_actions').zdkactionbar({
             whenadd: function() {
+                
+                
+            var selections = $('#propusk_table').zdkdatatable('getSelection');
+            if (selections.length === 1 && selections[0]) {
+
+
                 // Refresh profiles in the listbox
+ //                $('#basic_example_1').datetimepicker();
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
                 // Default expiration date value
-                $('#datetimepicker').datetimepicker();
-                $("#propusk_dlg form input[name=mycompany").val('<?php echo \UserSession::getLoginName(); ?>');
-                $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
-                $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+                $('#datetimepicker1').datetimepicker({
+lang : 'ru'
+ });
+ 
+                 $('#datetimepicker2').datetimepicker({
+lang : 'ru'
+ });
+//                $("#propusk_dlg form input[name=mycompany").val('php echo \UserSession::getLoginName(); ?>');
+//                  $("#propusk_dlg form input[name=mycompany").val($(this).text());//selections[0].num);              
+ //               $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+ //               $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+                
+                }
                 // Default user status is enabled (value = "1")
  //               $("#znetdk_user_dialog form input[name=user_enabled]").puiradiobutton('select', "1");
             },
