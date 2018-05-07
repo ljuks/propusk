@@ -9,21 +9,21 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 
 
-<script> 
-    znetdk.useScriptFile('jquery.datetimepicker.full.min.js');
-  //  znetdk.useScriptFile('resources/jquery_ui_datepicker/i18n/ui.datepicker-ru.js');
-  //  znetdk.useScriptFile('resources/jquery_ui_datepicker/timepicker_plug/timepicker.js');
-  //  znetdk.useScriptFile('resources/jquery_ui_datepicker/jquery_ui_datepicker.js');
- //  znetdk.useScriptFile('jquery-1.9.1.js');
- 
-    znetdk.useStyleSheet('jquery.datetimepicker.css'); 
- //   znetdk.useStyleSheet('resources/jquery_ui_datepicker/smothness/jquery_ui_datepicker.css'); 
+<script>
+    znetdk.useScriptFile('jquery.datetimepicker.full.js');
+    //  znetdk.useScriptFile('resources/jquery_ui_datepicker/i18n/ui.datepicker-ru.js');
+    //  znetdk.useScriptFile('resources/jquery_ui_datepicker/timepicker_plug/timepicker.js');
+    //  znetdk.useScriptFile('resources/jquery_ui_datepicker/jquery_ui_datepicker.js');
+    //  znetdk.useScriptFile('jquery-1.9.1.js');
+
+    znetdk.useStyleSheet('jquery.datetimepicker.css');
+    //   znetdk.useStyleSheet('resources/jquery_ui_datepicker/smothness/jquery_ui_datepicker.css'); 
 </script>
 
 <div id='propusk_actions' class="zdk-action-bar" data-zdk-dialog="propusk_dlg" data-zdk-datatable="propusk_table">
     <!-- Action buttons -->
-    <button value= 'a' class="zdk-bt-add">Добавить</button>
-     <button id='b' class="zdk-bt-add">Копировать</button>
+    <button id= 'a' class="zdk-bt-add">Добавить</button>
+    <button id='b' class="zdk-bt-copy" data-zdk-noselection="Выберите строку для копирования!">Копировать</button>
     <button class="zdk-bt-edit" data-zdk-noselection="Выберите строку для редактирования!">Редактировать</button>
     <button class="zdk-bt-remove" data-zdk-noselection="Выберите строку для удаления!"
             data-zdk-confirm="Удалить запись?:Да:Нет"
@@ -43,18 +43,20 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
     </div>
 </div>
 <!-- Datatable -->
-<div id="propusk_table" class="zdk-datatable zdk-synchronize" title="products" data-zdk-action="propuskctrl:data"
-     data-zdk-paginator="10" data-zdk-columns='[
+<div id="propusk_table" class="zdk-datatable zdk-synchronize" title="Пропуски" data-zdk-action="propuskctrl:data"
+     data-zdk-paginator="20" data-zdk-columns='[
      {"field":"id", "headerText": "№", "sortable":true},
      {"field":"dtstamp", "headerText": "Дата", "sortable":true},
      {"field":"aproved", "headerText": "Статус", "sortable":true},
      {"field":"person1", "headerText": "Ответственный", "sortable":true},
      {"field":"person2", "headerText": "Сопровождающий", "sortable":true},
+     {"field":"mycompany", "headerText": "Организация", "sortable":true},
+       {"field":"description", "headerText": "Комментарий", "sortable":false},
      {"field":"num", "headerText": "Номер машины", "sortable":true}]'
      >
 </div>
 <!-- Form dialog -->
-<div id="propusk_dlg" class="zdk-modal" title="Product" data-zdk-width="340px" data-zdk-confirm="Отменить изменения?:Да:Нет">
+<div id="propusk_dlg" class="zdk-modal" title="Пропуски" data-zdk-width="340px" data-zdk-confirm="Отменить изменения?:Да:Нет">
     <form class='zdk-form' data-zdk-action="propuskctrl:save" data-zdk-datatable="propusk_table">
         <!--        <label>id</label>
                 <input name="id" maxlength="10" required>-->
@@ -94,7 +96,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 <!-- Styles for the Datatable's columns --> 
 <style>
     #propusk-table tr > td:first-of-type, #propusk-table thead > th:first-of-type {
-        width: 90px;
+        width: 10px;
     }
 
 
@@ -109,46 +111,72 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 <script>
 
-    
+
     $(document).ready(function () {
-        
-        
+
+        $('#datetimepicker1').datetimepicker({
+            lang: 'ru'
+        });
+
+        $('#datetimepicker2').datetimepicker({
+            lang: 'ru'
+        });
 
 
 
         /********* When the form is reset **********/
         $('#propusk_actions').zdkactionbar({
-            whenadd: function() {
-                
-                
-            var selections = $('#propusk_table').zdkdatatable('getSelection');
-            if (selections.length === 1 && selections[0]) {
+            whenadd: function () {
 
+                //   alert(window.event.target.id);           
+                var selections = $('#propusk_table').zdkdatatable('getSelection');
+                if (selections.length === 1 && selections[0]) {
+//$.#datetimepicker.setLocale('ru');
 
-                // Refresh profiles in the listbox
- //                $('#basic_example_1').datetimepicker();
+                    // Refresh profiles in the listbox
+                    //                $('#basic_example_1').datetimepicker();
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
-                // Default expiration date value
-                $('#datetimepicker1').datetimepicker({
-lang : 'ru'
- });
- 
-                 $('#datetimepicker2').datetimepicker({
-lang : 'ru'
- });
+                    // Default expiration date value
+
 //                $("#propusk_dlg form input[name=mycompany").val('php echo \UserSession::getLoginName(); ?>');
 //                  $("#propusk_dlg form input[name=mycompany").val($(this).text());//selections[0].num);              
- //               $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
- //               $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
-                
+//                $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+//                $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+
                 }
                 // Default user status is enabled (value = "1")
- //               $("#znetdk_user_dialog form input[name=user_enabled]").puiradiobutton('select', "1");
+                //               $("#znetdk_user_dialog form input[name=user_enabled]").puiradiobutton('select', "1");
             },
-            whenedit: function() {
+            whenedit: function () {
+
+                // Refresh profiles in the listbox keeping current selection
+//                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh',true);
+            },
+            whencopy: function () {
+
+                var selections = $('#propusk_table').zdkdatatable('getSelection');
+                if (selections.length === 1 && selections[0]) {
+//$.#datetimepicker.setLocale('ru');
+
+                    // Refresh profiles in the listbox
+                    //                $('#basic_example_1').datetimepicker();
+//                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
+                    // Default expiration date value
+
+//                $("#propusk_dlg form input[name=mycompany").val('php echo \UserSession::getLoginName(); ?>');
+                 $("#propusk_dlg form input[name=person1").val(selections[0].person1);              
+                 $("#propusk_dlg form input[name=person2").val(selections[0].person2);                   
+//                $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+//                $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
+
+                }
+
+
                 // Refresh profiles in the listbox keeping current selection
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh',true);
             }
+
+
         });
 
     });

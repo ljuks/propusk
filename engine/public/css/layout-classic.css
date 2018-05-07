@@ -51,13 +51,13 @@ div#zdk-language-area, div#zdk-connection-area, div#zdk-help-area {
 }
 
 #zdk-classic-menu  > .pui-tabview-nav {
-    width:12%;
+    width:7%;
     height:100%;
     margin-bottom:2px;
 }
 
 #zdk-classic-menu > .pui-tabview-panels {
-    width:87%;
+    width:93%;
     height:100%;
 }
 

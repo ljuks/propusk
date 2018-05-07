@@ -25,6 +25,7 @@ $.widget("znetdk.zdkactionbar", {
         dialogID: null, /* The dialog to open when an action button "New" or "Add" is clicked */
         datatableID: null, /* The datatable to refresh when the action button "Remove" is clicked */
         whenadd: null, /* Call back function called when the add button is pressed  */
+        whencopy: null,
         whenedit: null, /* Call back function called when the edit button is pressed  */
         whenremove: null, /* Call back function called when the remove button is pressed  */
         getRemoveConfirm: null /* Call back function called to get removal confirmation */
@@ -48,7 +49,7 @@ $.widget("znetdk.zdkactionbar", {
                 this.selectRows.before('<div class="zdk-select-rows-label">' + selectRowsLabel + '</div>');
             }
             var selectedOption = this._getDefaultNumberOfSelectedRows();
-            this.selectRows.find('option[value=' + selectedOption + ']').first().prop('selected',true);
+            this.selectRows.find('option[value=' + selectedOption + ']').first().prop('selected', true);
             /* Init dropdown widget for the select element */
             this.selectRows.puidropdown();
         }
@@ -71,7 +72,7 @@ $.widget("znetdk.zdkactionbar", {
                 $(this).attr({"type": "text", "autocomplete": "off"});
                 /* Init autocomplete widget */
                 var options = {effect: 'fade', effectSpeed: 'fast'},
-                    delay = znetdk.getTextFromAttr($(this), 'data-zdk-delay');
+                        delay = znetdk.getTextFromAttr($(this), 'data-zdk-delay');
                 if (delay !== false) {
                     options.delay = delay;
                 }
@@ -104,6 +105,30 @@ $.widget("znetdk.zdkactionbar", {
             });
         }
 
+        /* Copy button */
+        var copyButton = this.element.find('button.zdk-bt-copy');
+        if (copyButton.length && this.options.dialogID) {
+            copyButton.click(function () {
+                var datatableSelection = $this._getSelectedRowInDatatable();
+                if (datatableSelection !== false) {
+                    var dialogTitle = copyButton.attr('title');
+                if (dialogTitle === undefined) {
+                    dialogTitle = copyButton.text();
+                }
+                $this._getDialog().find('span.pui-dialog-title').text(dialogTitle);
+                $this._getDialog().find('form').zdkform('reset');
+                /* Show dialog and trigger the specified event */
+                $this._showDialogAfterSynchronization("whencopy");
+            } else {
+                    var noSelectionMsg = znetdk.getTextFromAttr(copyButton, 'data-zdk-noselection');
+                    if (noSelectionMsg !== false) {
+                        znetdk.message('warn', $this._getEditDialogTitle(), noSelectionMsg);
+                    }
+                }
+            });
+        }
+
+
         /* Edit button */
         var editButton = this.element.find('button.zdk-bt-edit');
         if (editButton.length && this.options.dialogID && this.options.datatableID) {
@@ -123,49 +148,50 @@ $.widget("znetdk.zdkactionbar", {
         /* Remove button */
         this.removeButton = this.element.find('button.zdk-bt-remove');
         if (this.removeButton.length && this.options.datatableID) {
-            this._on(this.removeButton,{"click": function () {
-                var datatableSelection = $this._getSelectedRowInDatatable();
-                // Get the dialog title
-                var dialogTitle = $this.removeButton.attr('title');
-                if (dialogTitle === undefined) {
-                    dialogTitle = $this.removeButton.text();
-                }
-                if (datatableSelection !== false) {
-                    /* Event triggered for initialization purpose */
-                    if ($this._trigger("whenremove") === false) {
-                        return; // action is prevented
-                    };
-                    // Confirmation message
-                    var confirmationMsg = znetdk.getTextFromAttr($this.removeButton, 'data-zdk-confirm');
-                    var idName = $this._getRowIdParamName();
-                    if (confirmationMsg !== false) {
-                        var msgArray = confirmationMsg.split(":");
-                        znetdk.getUserConfirmation({
-                            title: dialogTitle,
-                            message: msgArray[0],
-                            yesLabel: msgArray[1],
-                            noLabel: msgArray[2],
-                            callback: function (confirmation) {
-                                if (confirmation) {
-                                    $this._removeRow(datatableSelection[idName], idName);
+            this._on(this.removeButton, {"click": function () {
+                    var datatableSelection = $this._getSelectedRowInDatatable();
+                    // Get the dialog title
+                    var dialogTitle = $this.removeButton.attr('title');
+                    if (dialogTitle === undefined) {
+                        dialogTitle = $this.removeButton.text();
+                    }
+                    if (datatableSelection !== false) {
+                        /* Event triggered for initialization purpose */
+                        if ($this._trigger("whenremove") === false) {
+                            return; // action is prevented
+                        }
+                        ;
+                        // Confirmation message
+                        var confirmationMsg = znetdk.getTextFromAttr($this.removeButton, 'data-zdk-confirm');
+                        var idName = $this._getRowIdParamName();
+                        if (confirmationMsg !== false) {
+                            var msgArray = confirmationMsg.split(":");
+                            znetdk.getUserConfirmation({
+                                title: dialogTitle,
+                                message: msgArray[0],
+                                yesLabel: msgArray[1],
+                                noLabel: msgArray[2],
+                                callback: function (confirmation) {
+                                    if (confirmation) {
+                                        $this._removeRow(datatableSelection[idName], idName);
+                                    }
                                 }
-                            }
-                        });
-                    } else if (typeof $this.options.getRemoveConfirm === "function") {
-                        $this.options.getRemoveConfirm.call($this,$this._removeRow,
-                            datatableSelection[idName], idName, dialogTitle);
+                            });
+                        } else if (typeof $this.options.getRemoveConfirm === "function") {
+                            $this.options.getRemoveConfirm.call($this, $this._removeRow,
+                                    datatableSelection[idName], idName, dialogTitle);
+                        } else {
+                            $this._removeRow(datatableSelection[idName], idName);
+                        }
                     } else {
-                        $this._removeRow(datatableSelection[idName], idName);
+                        var noSelectionMsg = znetdk.getTextFromAttr($this.removeButton, 'data-zdk-noselection');
+                        if (noSelectionMsg !== false) {
+                            znetdk.message('warn', dialogTitle, noSelectionMsg);
+                        }
                     }
-                } else {
-                    var noSelectionMsg = znetdk.getTextFromAttr($this.removeButton, 'data-zdk-noselection');
-                    if (noSelectionMsg !== false) {
-                        znetdk.message('warn', dialogTitle, noSelectionMsg);
-                    }
-                }
-            }});
+                }});
         }
-        
+
         /* Refresh button */
         var refreshButton = this.element.find('button.zdk-bt-refresh');
         if (refreshButton.length && this.options.datatableID) {
@@ -235,7 +261,7 @@ $.widget("znetdk.zdkactionbar", {
             }
         }
     },
-    editRow: function(row) {
+    editRow: function (row) {
         if (this.options.dialogID && this.options.datatableID) {
             // Get the dialog title
             var dialogTitle = this._getEditDialogTitle();
@@ -245,11 +271,11 @@ $.widget("znetdk.zdkactionbar", {
             this._getDialog().find('span.pui-dialog-title').text(dialogTitle);
             // Show the dialog and trigger the specified event
             this._showDialogAfterSynchronization("whenedit");
-        } 
+        }
     },
-    _showDialogAfterSynchronization: function(eventName) {
-        var $this = this, 
-            synchronizedWidget = this._getDialog().find('.zdk-synchronize');
+    _showDialogAfterSynchronization: function (eventName) {
+        var $this = this,
+                synchronizedWidget = this._getDialog().find('.zdk-synchronize');
         if (synchronizedWidget.length === 0) {
             this._trigger(eventName);
             this._getDialog().zdkmodal("show", true);
@@ -271,7 +297,7 @@ $.widget("znetdk.zdkactionbar", {
             this._getDialog().zdkmodal("show", true);
         }
     },
-    _getEditDialogTitle: function() {
+    _getEditDialogTitle: function () {
         var editButton = this.element.find('button.zdk-bt-edit');
         if (editButton.length === 1) {
             var dialogTitle = editButton.attr('title');
@@ -286,14 +312,14 @@ $.widget("znetdk.zdkactionbar", {
     _getDatatable: function () {
         return $('#' + this.options.datatableID);
     },
-    _refreshDatatable: function(keepSelection) {
+    _refreshDatatable: function (keepSelection) {
         if (this.options.datatableID === null) {
             return;
         }
         if (keepSelection === true) {
-            this._getDatatable().zdkdatatable('option','keepSelectionOnId', this._getRowIdParamName());
+            this._getDatatable().zdkdatatable('option', 'keepSelectionOnId', this._getRowIdParamName());
         } else {
-            this._getDatatable().zdkdatatable('option','keepSelectionOnId', null);
+            this._getDatatable().zdkdatatable('option', 'keepSelectionOnId', null);
         }
         this._getDatatable().zdkdatatable('refresh');
     },
@@ -315,34 +341,34 @@ $.widget("znetdk.zdkactionbar", {
      * tied datatable widget 
      * @returns {String} Number of rows displayed by default
      */
-    _getDefaultNumberOfSelectedRows: function() {
+    _getDefaultNumberOfSelectedRows: function () {
         var storageKeyPrefix = 'zdkdatatable_rows_',
-            storageKey = storageKeyPrefix + this.options.datatableID,
-            firstOptionValue = this.selectRows.find('option').first().val();
-        if(storageKey === storageKeyPrefix) {
+                storageKey = storageKeyPrefix + this.options.datatableID,
+                firstOptionValue = this.selectRows.find('option').first().val();
+        if (storageKey === storageKeyPrefix) {
             return firstOptionValue;
         }
         try {
             var storedValue = localStorage.getItem(storageKey)
-            if(storedValue) {
+            if (storedValue) {
                 return storedValue;
             } else {
                 return firstOptionValue;
             }
-        } catch(e) {
+        } catch (e) {
             console.log('zdkactionbar: no local storage available to retrieve the number of rows to display!');
             return firstOptionValue;
         }
     },
-    _storeDefaultNumberOfSelectedRows: function(numberOfRows) {
+    _storeDefaultNumberOfSelectedRows: function (numberOfRows) {
         var storageKeyPrefix = 'zdkdatatable_rows_',
-            storageKey = storageKeyPrefix + this.options.datatableID;
-        if(storageKey === storageKeyPrefix) {
+                storageKey = storageKeyPrefix + this.options.datatableID;
+        if (storageKey === storageKeyPrefix) {
             return false;
         }
         try {
             localStorage.setItem(storageKey, numberOfRows);
-        } catch(e) {
+        } catch (e) {
             console.log('zdkactionbar: no local storage available to store the number of rows to display!');
             return false;
         }
@@ -361,8 +387,8 @@ $.widget("znetdk.zdkactionbar", {
     },
     _removeRow: function (rowID, idName) {
         var $this = this,
-            ctrlAction = znetdk.getActionFromAttr(this.removeButton),
-            row = new Object();
+                ctrlAction = znetdk.getActionFromAttr(this.removeButton),
+                row = new Object();
         row[idName] = rowID;
         znetdk.request({
             control: ctrlAction.controller,
@@ -376,7 +402,7 @@ $.widget("znetdk.zdkactionbar", {
                     $this._trigger('rowremoved');
                 }
                 if (response.summary && response.msg) {
-                    var levelMsg = response.success === false ? 'error' : 
+                    var levelMsg = response.success === false ? 'error' :
                             response.warning === true ? 'warn' : 'info';
                     znetdk.message(levelMsg, response.summary, response.msg);
                 }
@@ -394,7 +420,7 @@ $.widget("znetdk.zdkactionbar", {
     /**
      * Empties the search field and hides the clear button.
      */
-    _emptySearchField: function() {
+    _emptySearchField: function () {
         if (this.filterAutoComplete !== undefined) {
             this.filterAutoComplete.val('');
         }
@@ -402,5 +428,5 @@ $.widget("znetdk.zdkactionbar", {
             this.filterClear.hide();
         }
     }
-    
+
 });

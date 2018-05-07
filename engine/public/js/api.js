@@ -289,6 +289,8 @@ var znetdk = {
             parentElement.find('button.zdk-bt-no').puibutton({icon: 'fa-close'});
             // add)
             parentElement.find('button.zdk-bt-add').puibutton({icon: 'fa-plus-circle'});
+            //copy
+            parentElement.find('button.zdk-bt-copy').puibutton({icon: 'fa-plus-circle'});
             // edit)
             parentElement.find('button.zdk-bt-edit').puibutton({icon: 'fa-pencil'});
             // remove)
