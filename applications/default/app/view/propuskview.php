@@ -51,7 +51,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
      {"field":"person1", "headerText": "Ответственный", "sortable":true},
      {"field":"person2", "headerText": "Сопровождающий", "sortable":true},
      {"field":"mycompany", "headerText": "Организация", "sortable":true},
-       {"field":"description", "headerText": "Комментарий", "sortable":false},
+     {"field":"description", "headerText": "Комментарий", "sortable":false},
      {"field":"num", "headerText": "Номер машины", "sortable":true}]'
      >
 </div>
@@ -81,9 +81,13 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         <textarea name="description" rows="3" maxlength="200"></textarea>
 
         <label>Компания</label>
-        <input name="mycompany" maxlength="30" value="333">
 
 
+        <select class="zdk-dropdown" name="mycompany" 
+                data-zdk-action="users:getcompanies"
+                data-zdk-noselection="Выбрать из списка..."
+
+                ></select>
 
 
 
@@ -154,18 +158,28 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
             },
             whencopy: function () {
 
+
+
+
                 var selections = $('#propusk_table').zdkdatatable('getSelection');
                 if (selections.length === 1 && selections[0]) {
 //$.#datetimepicker.setLocale('ru');
-
+$("#mycompany").zdkdropdown({
+    defaultSelectedValue:'Технолит'
+});
                     // Refresh profiles in the listbox
                     //                $('#basic_example_1').datetimepicker();
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
                     // Default expiration date value
 
 //                $("#propusk_dlg form input[name=mycompany").val('php echo \UserSession::getLoginName(); ?>');
-                 $("#propusk_dlg form input[name=person1").val(selections[0].person1);              
-                 $("#propusk_dlg form input[name=person2").val(selections[0].person2);                   
+                    $("#propusk_dlg form input[name=person1]").val(selections[0].person1);
+                    $("#propusk_dlg form input[name=person2]").val(selections[0].person2);
+                    $("#propusk_dlg form textarea[name=description]").val(selections[0].description);
+                    $("#propusk_dlg form input[name=num]").val(selections[0].num);
+//                    $("#propusk_dlg form zdk-dropdown[name=mycompany]").val(selections[0].mycompany);
+//                     $("#propusk_dlg form zdk-dropdown[name=mycompany]").zdkdropdown('defaultSelectedValue',"Технолит");
+//                     $("#propusk_dlg form zdk-dropdown[name=mycompany]").zdkdropdown('refresh',true);
 //                $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
 //                $("#propusk_dlg form input[name=date2]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
 
