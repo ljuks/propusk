@@ -164,9 +164,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
                 var selections = $('#propusk_table').zdkdatatable('getSelection');
                 if (selections.length === 1 && selections[0]) {
 //$.#datetimepicker.setLocale('ru');
-$("#mycompany").zdkdropdown({
-    defaultSelectedValue:'Технолит'
-});
+
                     // Refresh profiles in the listbox
                     //                $('#basic_example_1').datetimepicker();
 //                $('#znetdk_user_dialog .zdk-listbox').zdklistbox('refresh');
@@ -177,7 +175,8 @@ $("#mycompany").zdkdropdown({
                     $("#propusk_dlg form input[name=person2]").val(selections[0].person2);
                     $("#propusk_dlg form textarea[name=description]").val(selections[0].description);
                     $("#propusk_dlg form input[name=num]").val(selections[0].num);
-//                    $("#propusk_dlg form zdk-dropdown[name=mycompany]").val(selections[0].mycompany);
+                    $("#mycompany").zdkdropdown('selectValue','Технолит');
+                    $("#mycompany").zdkdropdown('refresh');
 //                     $("#propusk_dlg form zdk-dropdown[name=mycompany]").zdkdropdown('defaultSelectedValue',"Технолит");
 //                     $("#propusk_dlg form zdk-dropdown[name=mycompany]").zdkdropdown('refresh',true);
 //                $("#propusk_dlg form input[name=date1]").zdkinputdate('setW3CDate', '<?php echo \General::getCurrentW3CDate(); ?>');
