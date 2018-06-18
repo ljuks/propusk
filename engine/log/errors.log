@@ -181,3 +181,5 @@ Stack trace:
 [2018-05-08 06:28:25] CORE - E_NOTICE - Use of undefined constant LA_DEMO_INFO_MSG_SAVE - assumed 'LA_DEMO_INFO_MSG_SAVE' - C:\wamp64\www\propusk\applications\default\app\controller\propuskctrl.php(26)
 [2018-05-08 06:38:12] CORE - E_NOTICE - Use of undefined constant LA_DEMO_DIALOG_SAVE - assumed 'LA_DEMO_DIALOG_SAVE' - C:\wamp64\www\propusk\applications\default\app\controller\propuskctrl.php(25)
 [2018-05-08 06:38:12] CORE - E_NOTICE - Use of undefined constant LA_DEMO_INFO_MSG_SAVE - assumed 'LA_DEMO_INFO_MSG_SAVE' - C:\wamp64\www\propusk\applications\default\app\controller\propuskctrl.php(26)
+[2018-06-13 05:35:15] CORE - E_NOTICE - Use of undefined constant LA_DEMO_DIALOG_SAVE - assumed 'LA_DEMO_DIALOG_SAVE' - C:\wamp64\www\propusk\applications\default\app\controller\propuskctrl.php(25)
+[2018-06-13 05:35:15] CORE - E_NOTICE - Use of undefined constant LA_DEMO_INFO_MSG_SAVE - assumed 'LA_DEMO_INFO_MSG_SAVE' - C:\wamp64\www\propusk\applications\default\app\controller\propuskctrl.php(26)

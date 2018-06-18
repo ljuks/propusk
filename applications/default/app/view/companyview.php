@@ -11,11 +11,11 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 <div id='company_actions' class="zdk-action-bar" data-zdk-dialog="company_dlg" data-zdk-datatable="company_table">
     <!-- Action buttons -->
-    <button class="zdk-bt-add">New</button>
-    <button class="zdk-bt-edit" data-zdk-noselection="Please, select first a product to edit!">Edit</button>
-    <button class="zdk-bt-remove" data-zdk-noselection="Please, select first a product to remove!"
-            data-zdk-confirm="Do you really want to remove the selected product?:Yes:No"
-            data-zdk-action="companyctrl:remove">Remove</button>
+    <button class="zdk-bt-add">Добавить</button>
+    <button class="zdk-bt-edit" data-zdk-noselection="Выберите строку для редактирования!">Редактировать</button>
+    <button class="zdk-bt-remove" data-zdk-noselection="Выберите строку для удаления!"
+            data-zdk-confirm="Удалить запись?:Да:Нет"
+            data-zdk-action="companyctrl:remove">Удалить</button>
     <!-- Number of rows per page -->
     <select class="zdk-select-rows" title="Rows">  
         <option value="10">10</option>
@@ -54,8 +54,8 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 
 
-        <button class="zdk-bt-save zdk-close-dialog" type="submit">Save</button>
-        <button class="zdk-bt-cancel zdk-close-dialog" type="button">Cancel</button>
+        <button class="zdk-bt-save zdk-close-dialog" type="submit">Сохранить</button>
+        <button class="zdk-bt-cancel zdk-close-dialog" type="button">Отменить</button>
     </form>
 </div>
 <!-- Styles for the Datatable's columns --> 
