@@ -35,13 +35,14 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
         <option value="100">All</option>
     </select>
     <!-- Search form -->
-    <div class="zdk-filter-rows">
+    <div id='filter' class="zdk-filter-rows">
         <input title="search criteria..." data-zdk-action="propuskctrl:suggestions">
                     <input type="date" name="expiration_date" required
                    data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>" data-zdk-action="propuskctrl:suggestions">
         <button class="zdk-bt-clear" title="Reset the search field content..."></button>
         <button class="zdk-bt-search" title="Search the products that match the criteria..."
                 data-zdk-novalue="Please, type in a criteria first."></button>
+        <button id= 'c' class="zdk-bt-custom clear">ttt</button>
     </div>
 </div>
 <!-- Datatable -->
@@ -119,6 +120,13 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
 
     $(document).ready(function () {
+        
+         $("#filter button.clear").click(function() {
+  
+        });
+
+        
+        
 
         $('#datetimepicker1').datetimepicker({
             lang: 'ru'
