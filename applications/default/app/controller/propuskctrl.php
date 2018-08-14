@@ -88,6 +88,8 @@ class PropuskCtrl extends \AppController {
 
     static protected function action_suggestions() {
         // 1) Read POST parameters */
+        
+     
         $request = new \Request();
         
         // 2) Request the rows matching the criterium from the database

@@ -37,7 +37,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
     <!-- Search form -->
     <div id='filter' class="zdk-filter-rows">
         <input title="search criteria..." data-zdk-action="propuskctrl:suggestions">
-                    <input type="date" name="expiration_date" required 
+                    <input type="date" id="expiration_date" required 
                    data-zdkerrmsg-date="<?php echo LC_MSG_ERR_DATE_INVALID; ?>" data-zdk-action="propuskctrl:suggestions">
         <button class="zdk-bt-clear" title="Reset the search field content..."></button>
         <button class="zdk-bt-search" title="Search the products that match the criteria..."
@@ -121,7 +121,17 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
     $(document).ready(function () {
         
-         $("#filter button.clear").click(function() {
+          $('#expiration_date').datepicker( {
+    onSelect: function(date) {
+        alert(date);
+    },
+    selectWeek: true,
+    inline: true,
+    startDate: '01/01/2000',
+    firstDay: 1
+  });
+        
+         $('#filter button.clear').click(function() {
   bla;
         });
 
@@ -147,6 +157,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
 
         /********* When the form is reset **********/
         $('#propusk_actions').zdkactionbar({
+            
             whenadd: function () {
 
                 //   alert(window.event.target.id);           
