@@ -28,5 +28,9 @@ class PropuskDAO extends \DAO {
         $this->setFilterCriteria($name);
     }
     
-  
+    
+     public function setDateAsFilter($date) {
+        $this->filterClause = " WHERE dtstamp = ?";
+        $this->setFilterCriteria($date);
+    } 
 }

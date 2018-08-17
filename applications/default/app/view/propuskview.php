@@ -124,6 +124,7 @@ View - CRUD demonstration of ZnetDK (www.demo.znetdk.fr).
           $('#expiration_date').datepicker( {
     onSelect: function(date) {
         alert(date);
+    
     },
     selectWeek: true,
     inline: true,
